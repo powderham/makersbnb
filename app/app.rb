@@ -2,10 +2,14 @@ require 'sinatra/base'
 
 class HeartbreakBnB < Sinatra::Base
   get '/' do
-    'Hello HeartbreakBnB!'
+    erb[:index]
   end
 
-  heyyyyyyyy girl heyyyyy
+  get '/listings' do
+    erb[:listings]
+  end
+
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0
