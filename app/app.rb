@@ -3,13 +3,12 @@ require_relative 'data_mapper_setup'
 
 class HeartbreakBnB < Sinatra::Base
   get '/' do
-    erb[:index]
+    erb :index
   end
 
   get '/listings' do
-    erb[:listings]
+    erb :listings
   end
-
 
 
   # start the server if ruby file executed directly
