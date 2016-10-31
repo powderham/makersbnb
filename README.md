@@ -1,5 +1,6 @@
-## Hearbreak BnB
+## Heartbreak BnB
 
+#### Much like the Hotel California, you can checkout - but you can never leave.
 
 
 ### User Stories
