@@ -3,11 +3,12 @@ require_relative 'data_mapper_setup'
 
 class HeartbreakBnB < Sinatra::Base
   get '/' do
-    erb[:index]
+    erb :index
   end
 
-  get '/listings' do
-    erb[:listings]
+  post '/listings' do
+    @listing1 = Listing.create(name:params[:name], description:params[:description], price:params[:price])
+    erb :listings
   end
 
 
