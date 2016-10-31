@@ -6,8 +6,17 @@ class HeartbreakBnB < Sinatra::Base
     erb :index
   end
 
-  post '/listings' do
-    @listing1 = Listing.create(name:params[:name], description:params[:description], price:params[:price])
+  get '/listings/new' do
+    erb :"listings/new"
+  end
+
+  post '/listings/new' do
+    Listing.create(name:params[:name], description:params[:description], price:params[:price])
+    redirect '/listings'
+  end
+
+  get '/listings/' do
+    @listing1 = Listing.all()
     erb :listings
   end
 
