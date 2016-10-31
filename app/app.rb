@@ -12,11 +12,11 @@ class HeartbreakBnB < Sinatra::Base
 
   post '/listings/new' do
     Listing.create(name:params[:name], description:params[:description], price:params[:price])
-    redirect '/listings'
+    redirect('/listings')
   end
 
-  get '/listings/' do
-    @listing1 = Listing.all()
+  get '/listings' do
+    @listings = Listing.all()
     erb :listings
   end
 

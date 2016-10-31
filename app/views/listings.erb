@@ -6,6 +6,8 @@
   </head>
   <body>
     <h3>Find a new place to cry yourself to sleep</h3>
-    <%= @listing1 %>
+    <% @listings.each do |listing|%>
+      <%= listing.name %>
+    <% end  %>
   </body>
 </html>
