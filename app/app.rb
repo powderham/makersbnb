@@ -22,6 +22,10 @@ class HeartbreakBnB < Sinatra::Base
     erb :listings
   end
 
+  get '/bookings/new' do
+    erb :"bookings/new"
+  end
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0
