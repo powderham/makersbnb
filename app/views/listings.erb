@@ -28,10 +28,9 @@ Sign in:
   <input type="submit" value="Sign in">
 </form>
 
-
+  <%if @listings %>
     <p>
       <ul>
-
     <% @listings.each do |listing|%>
     <div>
       <li>  <%=listing.name %> </li>
@@ -43,10 +42,9 @@ Sign in:
       </form>
     </div>
     <% end  %>
-
     </ul>
   </p>
-
+  <% end %>
 
 
 <form action="/listings/new" method = "get" >
