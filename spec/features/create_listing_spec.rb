@@ -3,6 +3,7 @@ require 'spec_helper'
 
 feature "Submit listing" do
   scenario "Should be able to submit a listing" do
+    DatabaseCleaner.clean
     visit '/listings/new'
     fill_in('name', with: "Bates Motel")
     fill_in('description', with: "Very very nice")
