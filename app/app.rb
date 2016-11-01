@@ -11,7 +11,7 @@ class HeartbreakBnB < Sinatra::Base
   end
 
   post '/listings/new' do
-    Listing.create(name:params[:name], description:params[:description], price:params[:price])
+    Listing.create(name: params[:name], description: params[:description], price: params[:price])
     redirect('/listings')
   end
 
