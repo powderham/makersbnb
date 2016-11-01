@@ -35,6 +35,10 @@ class HeartbreakBnB < Sinatra::Base
     erb :listings
   end
 
+  get '/bookings/new' do
+    erb :"bookings/new"
+  end
+
   get '/users/new' do
     erb :"users/new"
   end

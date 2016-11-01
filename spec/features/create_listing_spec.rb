@@ -24,3 +24,14 @@ feature "Submit listing" do
 
   end
 end
+
+feature "Make booking" do
+  scenario "Should send a booking request" do
+    visit '/listings'
+    click_button('Request Booking')
+    expect(page).to have_current_path('/bookings/new')
+    expect(page).to have_content('Booking request sent!')
+    click_button('Return to listings')
+    expect(page).to have_current_path('/listings')
+  end
+end
