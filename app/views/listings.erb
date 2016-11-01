@@ -6,8 +6,29 @@
   </head>
   <body>
     <h3>Find a new place to cry yourself to sleep</h3>
+<br>
+    <form action="/" method "get" >
+      <button type="submit"> Home </button>
+    </form>
+</br>
+
+    <p>
+      <ul>
+
     <% @listings.each do |listing|%>
-      <%= listing.name %>
+    <li>  <%= listing.name %> </li>
+    <li> " <%= listing.description %> " </li>
+    <li>  £<%=listing.price %> </li>
     <% end  %>
+
+    </ul>
+  </p>
+
+<form action="/listings/new" method = "get" >
+  <button type ="submit"> Add new listing </button>
+</form>
+
+
+
   </body>
 </html>
