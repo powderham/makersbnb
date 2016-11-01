@@ -6,6 +6,7 @@ require_relative 'data_mapper_setup'
 data_mapper_configure
 
 class HeartbreakBnB < Sinatra::Base
+  use Rack::MethodOverride
 
   enable :sessions
   set :session_secret, 'super secret'
@@ -60,6 +61,21 @@ class HeartbreakBnB < Sinatra::Base
 
   get '/users' do
     erb :"users/index"
+  end
+
+  delete '/users' do
+    session.clear
+    redirect('/listings')
+  end
+
+  post "/users/sign_in" do
+    @user = User.first(email: params[:email])
+    if @user.password == params[:password]
+      session[:user_id] = @user.id
+      redirect '/users'
+    else
+      redirect '/listings'
+    end
   end
 
   # start the server if ruby file executed directly
