@@ -16,7 +16,8 @@ class HeartbreakBnB < Sinatra::Base
 
   helpers do
     def current_user
-      @current_user ||=User.get(session[:user_id])
+      User.get(session[:user_id])
+      @current_user ||= User.get(session[:user_id])
     end
   end
 
@@ -39,11 +40,13 @@ class HeartbreakBnB < Sinatra::Base
   end
 
   post '/users/new' do
-    @user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
-     p @user.save
+    @user = User.new(first_name: params[:first_name],
+                 last_name: params[:last_name],
+                 username: params[:username],
+                 email: params[:email],
+                 password: params[:password])
     if @user.save
       session[:user_id] = @user.id
-      # p @current_user
       redirect('/users')
     else
       redirect('/')
