@@ -10,4 +10,6 @@ class Listing
   property :description, Text
   property :price, Numeric
 
+  belongs_to :user
+
 end
