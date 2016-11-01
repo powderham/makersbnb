@@ -23,4 +23,5 @@ class User
            }
   property :password, String
 
+
 end
