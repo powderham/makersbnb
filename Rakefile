@@ -1,20 +1,19 @@
-require 'rspec/core/rake_task'
 
 require 'data_mapper'
 require 'dm-postgres-adapter'
-require_relative 'app/app'
+# require_relative 'app/app'
 
-RSpec::Core::RakeTask.new :spec
+# RSpec::Core::RakeTask.new :spec
 
-task default: [:spec]
+# task default: [:spec]
 
 namespace :db do
- task :autoupgrade do
+ task :auto_upgrade do
    puts "Upgrading database"
    DataMapper.auto_upgrade!
  end
 
- task :automigrate do
+ task :auto_migrate do
    puts "Migrating database"
    DataMapper.auto_migrate!
  end
