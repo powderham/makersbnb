@@ -27,7 +27,12 @@ class HeartbreakBnB < Sinatra::Base
   end
 
   post '/listings/new' do
-    Listing.create(name: params[:name], description: params[:description], price: params[:price])
+
+    Listing.create(name: params[:name],
+                   description: params[:description],
+                   price: params[:price],
+                   user_id: session[:user_id],
+                   date: params[:date])
     redirect('/listings')
   end
 
@@ -35,6 +40,12 @@ class HeartbreakBnB < Sinatra::Base
     @listings = Listing.all()
     erb :listings
   end
+
+  get '/listings/search' do
+      @date = params[:date]
+      @listings = Listing.all()
+      erb :"/listings/search"
+    end
 
   get '/bookings/new' do
     erb :"bookings/new"
@@ -60,6 +71,7 @@ class HeartbreakBnB < Sinatra::Base
   end
 
   get '/users' do
+    @user = session[:user_id]
     erb :"users/index"
   end
 
@@ -69,12 +81,12 @@ class HeartbreakBnB < Sinatra::Base
   end
 
   post "/users/sign_in" do
-    @user = User.first(email: params[:email])
-    if @user.password == params[:password]
+    @user = User.first(email: params[:email], password: params[:password])
+    if @user
       session[:user_id] = @user.id
       redirect '/users'
     else
-      redirect '/listings'
+      erb :"listings"
     end
   end
 
