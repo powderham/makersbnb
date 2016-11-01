@@ -11,4 +11,6 @@ class Listing
   property :price, Numeric
   property :date, Text
 
+  belongs_to :user
+
 end

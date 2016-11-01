@@ -3,7 +3,7 @@ require 'spec_helper'
 
 feature "Submit listing" do
   scenario "Should be able to submit a listing" do
-    DatabaseCleaner.clean
+    create_user
     visit '/listings/new'
     fill_in('name', with: "Bates Motel")
     fill_in('description', with: "Very very nice")
@@ -18,7 +18,6 @@ end
 
 feature "Submit listing" do
   scenario "Should be able to submit a listing" do
-    DatabaseCleaner.clean
     visit '/listings'
     click_button('Add new listing')
     expect(page).to have_current_path('/listings/new')
@@ -28,6 +27,8 @@ end
 
 feature "Make booking" do
   scenario "Should send a booking request" do
+    create_user
+    create_listing
     visit '/listings'
     click_button('Request Booking')
     expect(page).to have_current_path('/bookings/new')

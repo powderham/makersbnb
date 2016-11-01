@@ -7,3 +7,19 @@ def create_user
   fill_in('password', with: "disable_monkey_patching")
   click_button('submit')
 end
+
+def sign_in
+  visit '/listings'
+  fill_in('email', with: "M.j.scrooge@aol.com")
+  fill_in("password", with: "disable_monkey_patching")
+  click_button('Sign in')
+end
+
+
+def create_listing
+  visit '/listings/new'
+  fill_in('name', with: "Bates Motel")
+  fill_in('description', with: "Very very nice")
+  fill_in('price', with: 10)
+  click_button('submit')
+end
