@@ -9,5 +9,6 @@ class Listing
   property :name, Text
   property :description, Text
   property :price, Numeric
+  property :date, Text
 
 end

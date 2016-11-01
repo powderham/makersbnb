@@ -26,7 +26,7 @@ class HeartbreakBnB < Sinatra::Base
   end
 
   post '/listings/new' do
-    Listing.create(name: params[:name], description: params[:description], price: params[:price])
+    Listing.create(name: params[:name], description: params[:description], price: params[:price], date: params[:date])
     redirect('/listings')
   end
 
@@ -34,6 +34,12 @@ class HeartbreakBnB < Sinatra::Base
     @listings = Listing.all()
     erb :listings
   end
+
+  get '/listings/search' do
+      @date = params[:date]
+      @listings = Listing.all()
+      erb :"/listings/search"
+    end
 
   get '/bookings/new' do
     erb :"bookings/new"
