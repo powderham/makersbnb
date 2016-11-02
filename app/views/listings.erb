@@ -37,8 +37,9 @@ Sign in:
       <li> " <%=listing.description %> " </li>
       <li>  £<%=listing.price %> </li>
       <li> <%=listing.date %> </li>
-      <form action="/bookings/new" method = "get" >
-        <button type ="submit"> Request Booking </button>
+      <li> <%@list_id = listing.id %> </li>
+      <form action="/bookings/new" method = "post" >
+        <button type ="submit" name="listing_id" value ="<%=listing.id%>" > Request Booking </button>
       </form>
     </div>
     <% end  %>

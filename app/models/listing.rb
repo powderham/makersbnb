@@ -12,5 +12,7 @@ class Listing
   property :date, Text
 
   belongs_to :user
+  has n, :booking
+
 
 end

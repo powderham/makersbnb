@@ -1,12 +1,14 @@
 require 'data_mapper'
 require 'dm-postgres-adapter'
 
-class Booking do
+class Booking
 
   include DataMapper::Resource
 
   property :id, Serial
-  property :date, Text
+
+  belongs_to :user
+  belongs_to :listing
   # property :listing, ? <--- does this belong to the listing itself or to the user
   # property :user, ? <--- do we put both users i.e. guests and hosts in one or seperate?
     # property :host (host user_id)
@@ -18,3 +20,6 @@ class Booking do
 
 
 end
+
+
+# booking.create(user sessions[user.id],listing params[listing_id])

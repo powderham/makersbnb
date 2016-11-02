@@ -26,6 +26,7 @@ class User
   property :password, String,
            required: true
 
-has n, :listings
+has n, :listing
+has n, :booking
 
 end

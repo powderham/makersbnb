@@ -47,6 +47,14 @@ class HeartbreakBnB < Sinatra::Base
       erb :"/listings/search"
     end
 
+  post '/bookings/new' do
+    listing = Listing.get(params[:listing_id])
+    Booking.create(user_id: session[:user_id],
+                   listing_id: listing.id)
+
+    redirect("bookings/new")
+  end
+
   get '/bookings/new' do
     erb :"bookings/new"
   end
