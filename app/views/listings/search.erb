@@ -17,7 +17,7 @@
             <li>  £<%=listing.price %> </li>
             <li> <%=listing.date %> </li>
             <form action="/bookings/new" method = "get" >
-              <button type ="submit"> Request Booking </button>
+              <button type ="submit" value = "<%listing.id%>" > Request Booking </button>
             </form>
           </div>
 
