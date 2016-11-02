@@ -72,6 +72,8 @@ class HeartbreakBnB < Sinatra::Base
 
   get '/users' do
     @user = session[:user_id]
+    # @listings = Listing.all()
+    # p listings
     erb :"users/index"
   end
 
@@ -80,13 +82,21 @@ class HeartbreakBnB < Sinatra::Base
     redirect('/listings')
   end
 
+  get '/users/sign_in' do
+    erb :"users/sign_in"
+  end
+
+  get '/users/sign_out' do
+    erb :"users/sign_out"
+  end
+
   post "/users/sign_in" do
     @user = User.first(email: params[:email], password: params[:password])
     if @user
       session[:user_id] = @user.id
       redirect '/users'
     else
-      erb :"listings"
+      erb :listings
     end
   end
 
