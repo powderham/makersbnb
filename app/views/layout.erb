@@ -23,10 +23,16 @@
               <li><a href="/bookings/new">Booking</a></li>
       				<li><a href="/users">User</a></li>
       			</ul>
+            <% if @user  %>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="/users/new"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <li><a href="/users/sign_out"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+            <% else %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             </ul>
+            <% end  %>
       		</div>
       	</div>
       </nav>
