@@ -1,5 +1,7 @@
 ## Heartbreak BnB
 
+
+
 #### Much like the Hotel California, you can checkout - but you can never leave.
 
 ![Master of the Whiteboard](image.jpg)
