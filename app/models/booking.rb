@@ -9,6 +9,11 @@ class Booking
 
   belongs_to :user
   belongs_to :listing
+
+  
+  # has n, :listing
+  # has n, :user, required = false
+
   # property :listing, ? <--- does this belong to the listing itself or to the user
   # property :user, ? <--- do we put both users i.e. guests and hosts in one or seperate?
     # property :host (host user_id)
