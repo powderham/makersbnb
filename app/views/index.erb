@@ -10,9 +10,16 @@
     </div>
     <div align="center">
       <p>Welcome to HeartbreakBnB, where you can book a room to drown your sorrows by your sad pathetic lonesome self.</p>
-
+      <br>
+      Search Listings:
       <form action="/listings" method="get">
         <button input="submit"> See Listings </button>
+      </form>
+      <br>
+      Specify date:
+      <form action="/listings/search" method = "get" >
+        <input type ="text" name="date">
+        <button type="submit"> submit </button>
       </form>
 
   </body>
