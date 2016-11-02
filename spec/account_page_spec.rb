@@ -15,7 +15,7 @@ feature "Account page" do
     visit '/users'
     sign_in(user)
     expect(page).to have_content "Welcome Ed"
-    create_listing
-    expect(page).to have_content "Bates Motel"
+    create_listing(listing)
+    expect(page).to have_content "Ed Manor"
   end
 end

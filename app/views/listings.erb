@@ -24,12 +24,12 @@
     <p>
       <ul>
     <% @listings.each do |listing|%>
-    <div>
+    <div id='listing_<%=listing.id%>'>  <% p listing.id %>
       <li>  <%=listing.name %> </li>
       <li> " <%=listing.description %> " </li>
       <li>  £<%=listing.price %> </li>
       <li> <%=listing.date %> </li>
-      <%@list_id = listing.id %> 
+      <%@list_id = listing.id %>
       <form action="/bookings/new" method = "post" >
         <button type ="submit" name="listing_id" value ="<%=listing.id%>" > Request Booking </button>
       </form>
