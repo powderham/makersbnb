@@ -80,8 +80,8 @@ class HeartbreakBnB < Sinatra::Base
 
   get '/users' do
     @user = session[:user_id]
-    # @listings = Listing.all()
-    # p listings
+    @listings = Listing.all()
+    puts "#{@listings}STRING CHEESE"
     erb :"users/index"
   end
 
@@ -99,6 +99,7 @@ class HeartbreakBnB < Sinatra::Base
   end
 
   post "/users/sign_in" do
+    p "#{@user}VELVETA"
     @user = User.first(email: params[:email], password: params[:password])
     if @user
       session[:user_id] = @user.id
