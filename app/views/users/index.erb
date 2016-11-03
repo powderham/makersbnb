@@ -6,7 +6,6 @@
   </head>
   <body>
     <div class="row">
-      <% if @user %>
       <h1>Welcome <%= current_user.username %></h1>
       <div class="col-lg-4">
         <h2> Your listed homes </h2>
@@ -49,17 +48,6 @@
       </div>
       <div class="col-lg-4">
         <h2>Your bookings:</h2>
-
-
       </div>
-      <% else %>
-      You are not signed in:
-      <form action="/users/sign_in" method="post">
-        <input type="text" name="email" placeholder="email address">
-        <input type="text" name="password" placeholder="password">
-        <input type="submit" value="Sign in">
-      </form>
-      <% end %>
-    </div>
   </body>
 </html>
