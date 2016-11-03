@@ -68,7 +68,7 @@ class HeartbreakBnB < Sinatra::Base
         booking = Booking.get(params[:confirm_booking])
         booking.update(:confirmed => true)
         email = Email.new
-        email.send_simple_message
+        email.send_email(params[:confirm_booking])
         redirect ("/users")
   end
 
