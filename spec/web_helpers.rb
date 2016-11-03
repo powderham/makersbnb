@@ -15,6 +15,10 @@ def sign_in(user)
   click_button('Sign in')
 end
 
+def sign_out
+  visit '/users/sign_out'
+  click_button('Sign out')
+end
 
 def create_listing(listing)
   visit '/listings/new'
