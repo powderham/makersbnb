@@ -56,7 +56,7 @@ class HeartbreakBnB < Sinatra::Base
     end
 
   post '/bookings/new' do
-    listing = Listing.get(params[:listing_id])
+    listing = Listing.get(params[:Request_Booking])
     Booking.new_booking(session[:user_id], listing.id, params[:date])
     erb :index
     redirect("bookings/new")
@@ -64,7 +64,10 @@ class HeartbreakBnB < Sinatra::Base
 
   get '/bookings/new' do
     @booked = Booking.last
+    p @booked
     @listings = Listing.all
+    @listing = Listing.find_listing(Booking.last.listing_id)
+    p @listing
     @user = User.all
     erb :"bookings/new"
   end

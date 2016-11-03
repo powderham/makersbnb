@@ -24,8 +24,8 @@ sign_out
   visit ("/listings")
   expect(page).to have_content("Swampy")
   puts page.body
-  within('div#listing_7') do
-    click_button('Request Booking')
+  within('div#listing_9') do
+    click_button('Request_Booking')
   end
   sign_out
 
