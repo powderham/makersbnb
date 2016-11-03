@@ -44,8 +44,7 @@ feature "Make booking" do
     sign_in(user)
     create_listing(listing)
     visit '/listings'
-    puts page.body
-    within('div#listing_10') do click_button('Request Booking') end
+    within('div#listing_11') do click_button('Request Booking') end
     expect(page).to have_current_path('/bookings/new')
     expect(page).to have_content('Booking request sent!')
     click_button('Return to listings')

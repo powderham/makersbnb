@@ -27,13 +27,20 @@ class HeartbreakBnB < Sinatra::Base
     erb :"listings/new"
   end
 
-  post '/listings/new' do
+  post "/listings/add_availability" do
+    listing = Listing.get(params[:listing_id])
+    listing.days << Day.first_or_create(date: DateTime.parse(params[:available_date]))
+    listing.save
+    redirect "/users"
+  end
 
-    Listing.create(name: params[:name],
+  post '/listings/new' do
+    listing = Listing.create(name: params[:name],
                    description: params[:description],
                    price: params[:price],
-                   user_id: session[:user_id],
-                   date: params[:date])
+                   user_id: session[:user_id])
+    listing.days << Day.first_or_create(date: DateTime.parse(params[:available_date]))
+    listing.save
     redirect('/listings')
   end
 

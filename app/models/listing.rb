@@ -13,6 +13,6 @@ class Listing
 
   belongs_to :user
   has n, :booking
-
+  has n, :days, through: Resource
 
 end
