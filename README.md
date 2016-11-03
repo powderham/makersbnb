@@ -1,6 +1,23 @@
 ## Heartbreak BnB
 
+<!-- <ul>
+  <% @listings.each do |listing|%>
+<div>
+  <li>  <%=listing.name %> </li>
+  <li> " <%=listing.description %> " </li>
+  <li>  £<%=listing.price %> </li>
+  <li> <%=listing.date %> </li>
+  <form action="/bookings/new" method = "post" >
+    <button type ="submit" name="listing_id" value ="<%=listing.id%>" > Request Booking </button>
+  </form>
+  <% end %>
+</div>
+</ul> -->
 
+<!-- 
+app/rb
+    # @listings = Listing.all(:user_id.not => @user)
+        # puts "#{@listings}STRING CHEESE" -->
 
 #### Much like the Hotel California, you can checkout - but you can never leave.
 
