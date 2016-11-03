@@ -11,13 +11,20 @@
       <div class="col-lg-4">
         <h2> Your listed homes </h2>
           <% @homes.each do |home|%>
-          <div>
+          <div id="home_<%=home.id%>">
             <li>  <%=home.name %> </li>
             <li> " <%=home.description %> " </li>
             <li>  £<%=home.price %> </li>
-            <li> <%=home.date %> </li>
+            <%home.days.each do |day|%>
+            <li><%=day.date.strftime('%d %b %Y')%></li>
+            <% end  %>
+            <form action="/listings/add_availability" method="post">
+              <input type="date" name="available_date" min="" value="2016-09-16">
+              <input type="hidden"  name="listing_id" value="<%=home.id%>">
+              <button type="submit" name="Add_availability">Add availability</button>
+            </form>
               <% end %>
-      </div>
+            </div>
     </div>
       <div class="col-lg-4">
         <h2> Requests for your homes: </h2>
@@ -28,7 +35,9 @@
                 <% listing_id = booked.listing_id %>
                 <% hotel = Listing.get(listing_id) %>
           <li>  <%=hotel.name %> </li>
-          <li> <%=hotel.date %> </li>
+          <%hotel.days.each do |day|%>
+          <li><%=day.date.strftime('%d %b %Y')%></li>
+          <% end  %>
           <form action="/bookings/confirm" method = "post" >
             <button type ="submit" name="confirm_booking" > Confirm Booking </button>
           </form>
