@@ -7,8 +7,8 @@
   <body>
     <h3>Booking request sent!</h3>
 
-    <p> Booking Ref: <%= @booked.id %> </p>
-
+    <p>Booking Ref: <%= @booked.id %></p>
+    Date: <%= @booked.date %>
 
 <% @listings.each do |listing| %>
   <% if listing.id == @booked.listing_id %>

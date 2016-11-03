@@ -7,24 +7,16 @@ class Booking
 
   property :id, Serial
   property :confirmed, Boolean
+  property :date, Text
 
   belongs_to :user
   belongs_to :listing
 
-
-  # has n, :listing
-  # has n, :user, required = false
-
-  # property :listing, ? <--- does this belong to the listing itself or to the user
-  # property :user, ? <--- do we put both users i.e. guests and hosts in one or seperate?
-    # property :host (host user_id)
-    # property :guest (guest user_id)
-
-  # booking ref/ID could be used as a confirmation, i.e. via Twilio or MailChimp
-  # utilise google maps api to show location of listing on booking
-
-
-
+  def self.new_booking(user_id, listing_id, date)
+    self.create(user_id: user_id,
+                   listing_id: listing_id,
+                   confirmed: false, date: date)
+  end
 end
 
 
