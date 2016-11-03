@@ -37,4 +37,5 @@ feature "Account page" do
     sign_out
 
   end
+
 end

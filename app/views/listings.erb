@@ -31,7 +31,7 @@
       <li> <%=listing.date %> </li>
       <%@list_id = listing.id %>
       <form action="/bookings/new" method = "post" >
-        <button type ="submit" name="listing_id" value ="<%=listing.id%>" > Request Booking </button>
+        <button type ="submit" name="listing_id" value ="<%=listing.id%>" >Request Booking</button>
       </form>
     </div>
     <% end  %>

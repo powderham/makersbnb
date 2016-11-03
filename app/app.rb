@@ -63,11 +63,11 @@ class HeartbreakBnB < Sinatra::Base
     erb :"bookings/new"
   end
 
-  post '/bookings/confirmed' do
+  post '/bookings/confirm' do
         booking = Booking.get(params[:confirm_booking])
-        booking.confirmed = true
+        booking.update(:confirmed => true)
         p booking
-        redirect ("users/index")
+        redirect ("/users")
   end
 
   get '/users/new' do
