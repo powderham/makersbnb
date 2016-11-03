@@ -50,7 +50,8 @@ class HeartbreakBnB < Sinatra::Base
   post '/bookings/new' do
     listing = Listing.get(params[:listing_id])
     Booking.create(user_id: session[:user_id],
-                   listing_id: listing.id)
+                   listing_id: listing.id,
+                   confirmed: false)
     erb :index
     redirect("bookings/new")
   end
@@ -59,6 +60,7 @@ class HeartbreakBnB < Sinatra::Base
     @booked = Booking.last
     @listings = Listing.all
     @user = User.all
+
 
 
     erb :"bookings/new"
@@ -85,9 +87,9 @@ class HeartbreakBnB < Sinatra::Base
 
   get '/users' do
     @user = session[:user_id]
-    @listings = Listing.all()
-    puts "#{@listings}STRING CHEESE"
+    @homes = Listing.all(user_id: @user)
     erb :"users/index"
+
   end
 
   delete '/users' do
