@@ -4,6 +4,7 @@ require "dm-postgres-adapter"
 require_relative 'models/listing'
 require_relative 'models/user'
 require_relative 'models/booking'
+require_relative 'models/email'
 
 
 def data_mapper_configure
