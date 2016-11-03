@@ -17,12 +17,10 @@ feature "Make booking" do
     sign_in(user)
     create_listing(listing)
     visit '/listings'
-      within('div#listing_4') do
+      within('div#listing_6') do
         click_button('Request Booking')
       end
-    expect(page).to have_current_path('/bookings/new')
     expect(page).to have_content('Booking request sent!')
     click_button('Return to listings')
-    expect(page).to have_current_path('/listings')
   end
 end
