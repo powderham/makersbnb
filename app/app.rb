@@ -60,10 +60,14 @@ class HeartbreakBnB < Sinatra::Base
     @booked = Booking.last
     @listings = Listing.all
     @user = User.all
-
-
-
     erb :"bookings/new"
+  end
+
+  post '/bookings/confirmed' do
+        booking = Booking.get(params[:confirm_booking])
+        booking.confirmed = true
+        p booking
+        redirect ("users/index")
   end
 
   get '/users/new' do

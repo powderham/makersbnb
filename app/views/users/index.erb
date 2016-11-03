@@ -25,12 +25,14 @@
           <% booked_home = home.booking %>
             <% booked_home.each do |booked|%>
             <% if booked.confirmed == false %>
-                <% listing_id = booked.listing_id %>
-                <% hotel = Listing.get(listing_id) %>
+                <% hotel = Listing.get(booked.listing_id) %>
+                <% guest = User.get(booked.user_id) %>
           <li>  <%=hotel.name %> </li>
           <li> <%=hotel.date %> </li>
+          <li> Booked by: <%= guest.first_name%> <%= guest.last_name%> </li>
+
           <form action="/bookings/confirm" method = "post" >
-            <button type ="submit" name="confirm_booking" > Confirm Booking </button>
+            <button type ="submit" name="confirm_booking" value="<%=booked.id%>" > Confirm Booking </button>
           </form>
           <% end %>
         <% end %>
