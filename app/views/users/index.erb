@@ -5,43 +5,48 @@
     <title>Account</title>
   </head>
   <body>
-    <% if @user %>
-    <h1>Welcome <%= current_user.username %></h1>
-
-    <h2> Your listed homes </h2>
-      <% @homes.each do |home|%>
-      <div>
-        <li>  <%=home.name %> </li>
-        <li> " <%=home.description %> " </li>
-        <li>  £<%=home.price %> </li>
-        <li> <%=home.date %> </li>
+    <div class="row">
+      <% if @user %>
+      <h1>Welcome <%= current_user.username %></h1>
+      <div class="col-lg-4">
+        <h2> Your listed homes </h2>
+          <% @homes.each do |home|%>
+          <div>
+            <li>  <%=home.name %> </li>
+            <li> " <%=home.description %> " </li>
+            <li>  £<%=home.price %> </li>
+            <li> <%=home.date %> </li>
+              <% end %>
+      </div>
+    </div>
+      <div class="col-lg-4">
+        <h3> Requests for your homes </h3>
+          <% @homes.each do |home|%>
+          <% booked_home = home.booking %>
+            <% booked_home.each do |booked|%>
+            <% if booked.confirmed == false %>
+                <% listing_id = booked.listing_id %>
+                <% hotel = Listing.get(listing_id) %>
+          <li>  <%=hotel.name %> </li>
+          <li> <%=hotel.date %> </li>
+          <form action="/bookings/confirm" method = "post" >
+            <button type ="submit" name="confirm_booking" > Confirm Booking </button>
+          </form>
           <% end %>
-
-    <h3> Requests for your homes </h3>
-      <% @homes.each do |home|%>
-      <% booked_home = home.booking %>
-        <% booked_home.each do |booked|%>
-        <% if booked.confirmed == false %>
-            <% listing_id = booked.listing_id %>
-            <% hotel = Listing.get(listing_id) %>
-      <li>  <%=hotel.name %> </li>
-      <li> <%=hotel.date %> </li>
-      <form action="/bookings/confirm" method = "post" >
-        <button type ="submit" name="confirm_booking" > Confirm Booking </button>
-      </form>
+        <% end %>
       <% end %>
-<% end %>
-<% end %>
-    <% else %>
+      </div>
+      <div class="col-lg-4">
+        <h2>Your bookings:</h2>
+      </div>
+      <% else %>
       You are not signed in:
       <form action="/users/sign_in" method="post">
         <input type="text" name="email" placeholder="email address">
         <input type="text" name="password" placeholder="password">
         <input type="submit" value="Sign in">
       </form>
-
-
-
-    <% end %>
+      <% end %>
+    </div>
   </body>
 </html>
