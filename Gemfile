@@ -9,6 +9,7 @@ gem "database_cleaner"
 gem 'bcrypt'
 gem 'sinatra-flash'
 gem "sinatra-partial"
+gem "rest-client"
 # gem 'pg'
 # gem 'rake'
 

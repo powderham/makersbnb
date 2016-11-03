@@ -2,6 +2,7 @@ ENV["RACK_ENV"] ||= 'development'
 
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
+require_relative 'models/email'
 
 data_mapper_configure
 
@@ -67,10 +68,15 @@ class HeartbreakBnB < Sinatra::Base
     @booked = Booking.last
     @listings = Listing.all
     @user = User.all
-
-
-
     erb :"bookings/new"
+  end
+
+  post '/bookings/confirm' do
+        booking = Booking.get(params[:confirm_booking])
+        booking.update(:confirmed => true)
+        email = Email.new
+        email.send_email(params[:confirm_booking])
+        redirect ("/users")
   end
 
   get '/users/new' do

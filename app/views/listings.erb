@@ -32,7 +32,7 @@
         <li><%=day.date.strftime('%d %b %Y')%></li>
       <% end  %>
       <form action="/bookings/new" method = "post" >
-        <button type ="submit" name="listing_id" value ="<%=listing.id%>" > Request Booking </button>
+        <button type ="submit" name="listing_id" value ="<%=listing.id%>" >Request Booking</button>
       </form>
     </div>
     <% end  %>

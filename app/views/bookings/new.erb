@@ -12,7 +12,7 @@
 
 <% @listings.each do |listing| %>
   <% if listing.id == @booked.listing_id %>
-          Your staying at <%= listing.name %>
+          You are staying at <%= listing.name %>
         <% @your_listing = listing %>
     <% end %>
     <% end %>
