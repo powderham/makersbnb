@@ -1,5 +1,26 @@
 ## Heartbreak BnB
 
+<div class="col-lg-4">
+  <h2> Requests for your homes: </h2>
+    <% @homes.each do |home|%>
+    <% booked_home = home.booking %>
+      <% booked_home.each do |booked|%>
+      <% if booked.confirmed == false %>
+          <% hotel = Listing.get(booked.listing_id) %>
+          <% guest = User.get(booked.user_id) %>
+    <li>  <%=hotel.name %> </li>
+        <%hotel.days.each do |day|%>
+    <li><%=day.date.strftime('%d %b %Y')%></li>
+    <li> Booked by: <%= guest.first_name%> <%= guest.last_name%> </li>
+    <% end  %>
+
+    <form action="/bookings/confirm" method = "post" >
+      <button type ="submit" name="confirm_booking" value="<%=booked.id%>" > Confirm Booking </button>
+    </form>
+    <% end %>
+  <% end %>
+<% end %>
+
 
 #### Much like the Hotel California, you can checkout - but you can never leave.
 

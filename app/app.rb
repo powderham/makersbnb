@@ -3,6 +3,7 @@ ENV["RACK_ENV"] ||= 'development'
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
 require_relative 'models/email'
+require_relative 'models/data_getter'
 
 data_mapper_configure
 
@@ -100,7 +101,9 @@ class HeartbreakBnB < Sinatra::Base
 
   get '/users' do
     @user = session[:user_id]
-    @homes = Listing.all(user_id: @user)
+    @listings = Listing.all(user_id: @user)
+    getter = Data_getter.new
+    @parcel_arr = getter.return_listings(@listings)
 
     erb :"users/index"
 

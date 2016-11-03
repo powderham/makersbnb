@@ -15,11 +15,11 @@ def confirmation_email(name, email, reference)
 end
 
 def send_email(booking_id)
-    p booking = Booking.get(booking_id)
+    booking = Booking.get(booking_id)
     user = User.get(booking.user_id)
-    p @name = user.first_name
-    p @email = user.email
-    p @booking_id = booking_id
+    @name = user.first_name
+    @email = user.email
+    @booking_id = booking_id
     confirmation_email(@name, @email, @booking_id)
 end
 
