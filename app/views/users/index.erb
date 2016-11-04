@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Account</title>
-</head>
-<body>
-  <div class="row">
-    <h1>Welcome <%= current_user.username %></h1>
-    <div class="col-lg-4">
-      <h2> Your listed homes </h2>
-      <%@parcel_arr.each do |listing_arr| %>
-
-      <div id="home_<%=listing_arr[3]%>">
-        <li>   <%=listing_arr[0]%>  </li>
-        <li>  "<%=listing_arr[1]%>" </li>
-        <li>  £<%=listing_arr[2]%>  </li>
-        <li>   <%=listing_arr[4]%>  </li>
-
-        <form action="/listings/add_availability" method="post">
-          <input type="date" name="available_date" min="" value="2016-09-16">
-          <input type="hidden"  name="listing_id" value="<%=listing_arr[3]%>">
-          <button type="submit" name="Add_availability">Add availability</button>
-        </form>
-        <% end %>
-      </div>
+  <head>
+    <meta charset="utf-8">
+    <title>Account</title>
+  </head>
+  <body>
+    <div class="row">
+      <h1>Welcome <%= current_user.username %></h1>
+      <div class="col-lg-4">
+        <h2> Your listed homes </h2>
+            <% @listings.each do |listing| %>
+            <div id="listing_<%=listing.id%>">
+              <li>  <%=listing.name%> </li>
+              <li> " <%=listing.description%> " </li>
+              <li>  £<%=listing.price%> </li>
+                <% listing.days.each do |day|  %>
+                  <li><%= day.date %></li>
+                <% end %>
+              <form id="listing_<%=listing.id%>_availability" action="/listings/add_availability" method="post">
+                  <input type="date" name="available_date" min="" value="2016-09-16">
+                  <input type="hidden"  name="listing_id" value="<%=listing.id%>">
+                  <button type="submit" name="Add_availability">Add availability</button>
+              </form>
+            </div>
+            <%end%>
     </div>
 
       <div class="col-lg-4">

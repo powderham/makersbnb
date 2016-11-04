@@ -68,7 +68,6 @@ class HeartbreakBnB < Sinatra::Base
     @listings = Listing.all
     @listing = Listing.get(@booked.listing_id)
     @host = User.get(@listing.user_id)
-    p @host
     @user = User.all
     erb :"bookings/new"
   end
