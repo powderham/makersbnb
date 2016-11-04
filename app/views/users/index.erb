@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Account</title>
-  </head>
-  <body>
-    <div class="row">
-      <h1>Welcome <%= current_user.username %></h1>
-      <div class="col-lg-4">
-        <h2> Your listed homes </h2>
-        <%@parcel_arr.each do |listing_arr| %>
+<head>
+  <meta charset="utf-8">
+  <title>Account</title>
+</head>
+<body>
+  <div class="row">
+    <h1>Welcome <%= current_user.username %></h1>
+    <div class="col-lg-4">
+      <h2> Your listed homes </h2>
+      <%@parcel_arr.each do |listing_arr| %>
 
-          <div id="home_<%=listing_arr[3]%>">
-            <li>  <%=listing_arr[0] %> </li>
-            <li> " <%=listing_arr[1] %> " </li>
-            <li>  £<%=listing_arr[2] %> </li>
+      <div id="home_<%=listing_arr[3]%>">
+        <li>   <%=listing_arr[0]%>  </li>
+        <li>  "<%=listing_arr[1]%>" </li>
+        <li>  £<%=listing_arr[2]%>  </li>
+        <li>   <%=listing_arr[4]%>  </li>
 
-            <li><%=listing_arr[4]%></li>
-
-            <form action="/listings/add_availability" method="post">
-              <input type="date" name="available_date" min="" value="2016-09-16">
-              <input type="hidden"  name="listing_id" value="<%=listing_arr[3]%>">
-              <button type="submit" name="Add_availability">Add availability</button>
-            </form>
-              <% end %>
-            </div>
+        <form action="/listings/add_availability" method="post">
+          <input type="date" name="available_date" min="" value="2016-09-16">
+          <input type="hidden"  name="listing_id" value="<%=listing_arr[3]%>">
+          <button type="submit" name="Add_availability">Add availability</button>
+        </form>
+        <% end %>
+      </div>
     </div>
 
-      </div>
       <div class="col-lg-4">
-        <h2>Your bookings:</h2>
+        <h2> Requests for your homes: </h2>
+        <% @listings.each do |home|%>
+        <% booked_home = home.booking %>
+        <% booked_home.each do |booked|%>
+        <% if booked.confirmed == false %>
+        <% hotel = Listing.get(booked.listing_id) %>
+        <% guest = User.get(booked.user_id) %>
+        <li>  <%=hotel.name %> </li>
+        <%hotel.days.each do |day|%>
+        <li><%=day.date.strftime('%d %b %Y')%></li>
+        <li> Booked by: <%= guest.first_name%> <%= guest.last_name%> </li>
+        <% end  %>
+
+        <!-- <form action="/bookings/confirm" method = "post" > -->
+          <button id="confirmBooking" type ="submit" name="confirm_booking" value="<%=booked.id%>" > Confirm Booking </button>
+        <!-- </form> -->
+        <% end %>
+        <% end %>
+        <% end %>
       </div>
+    <div class="col-lg-4">
+      <h2>Your bookings:</h2>
+    </div>
   </body>
-</html>
+  </html>
