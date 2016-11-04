@@ -57,10 +57,8 @@ class HeartbreakBnB < Sinatra::Base
     end
 
   post '/bookings/new' do
-    listing = Listing.get(params[:listing_id])
-    Booking.create(user_id: session[:user_id],
-                   listing_id: listing.id,
-                   confirmed: false)
+    listing = Listing.get(params[:Request_Booking])
+    Booking.new_booking(session[:user_id], listing.id, params[:date])
     erb :index
     redirect("bookings/new")
   end
@@ -68,6 +66,9 @@ class HeartbreakBnB < Sinatra::Base
   get '/bookings/new' do
     @booked = Booking.last
     @listings = Listing.all
+    @listing = Listing.get(@booked.listing_id)
+    @host = User.get(@listing.user_id)
+    p @host
     @user = User.all
     erb :"bookings/new"
   end
@@ -101,12 +102,14 @@ class HeartbreakBnB < Sinatra::Base
 
   get '/users' do
     @user = session[:user_id]
-    @listings = Listing.all(user_id: @user)
-    getter = Data_getter.new
-    @parcel_arr = getter.return_listings(@listings)
-
-    erb :"users/index"
-
+    if @user
+      @listings = Listing.all(user_id: @user)
+      getter = Data_getter.new
+      @parcel_arr = getter.return_listings(@listings)
+      erb :"users/index"
+    else
+      erb :"users/sign_in"
+    end
   end
 
   delete '/users' do
