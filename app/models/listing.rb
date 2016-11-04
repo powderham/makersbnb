@@ -18,4 +18,8 @@ class Listing
   def self.find_listing(booking_listing_id)
     Listing.get(booking_listing_id)
   end
+
+  def self.add_availability(listing_id)
+    
+  end
 end
