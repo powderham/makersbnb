@@ -10,7 +10,7 @@
     <p>Booking Ref: <%= @booked.id %></p>
     Date: <%= @booked.date %>
 
-<% @listings.each do |listing| %>
+<!-- <% @listings.each do |listing| %>
     <% if listing.id == @booked.listing_id %>
           You are staying at <%= listing.name %>
         <% @your_listing = listing %>
@@ -20,7 +20,12 @@
       <% if user.id == @your_listing.user_id %>
         Your host is <%= user.first_name %> <%= user.last_name %>
     <% end %>
-<% end %>
+<% end %> -->
+
+    You are staying at: <%= @listing.name  %>
+    Your host is: <%= @host.first_name %>
+    <!-- Your host is<% @listing.name  %> -->
+
 
     <form action="/listings" method = "get" >
       <button type ="submit"> Return to listings </button>

@@ -16,6 +16,6 @@ class Listing
   has n, :days, through: Resource
 
   def self.find_listing(booking_listing_id)
-    Listing.get(id: booking_listing_id)
+    Listing.get(booking_listing_id)
   end
 end

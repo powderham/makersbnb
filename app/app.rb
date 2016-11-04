@@ -64,10 +64,10 @@ class HeartbreakBnB < Sinatra::Base
 
   get '/bookings/new' do
     @booked = Booking.last
-    p @booked
     @listings = Listing.all
-    @listing = Listing.find_listing(Booking.last.listing_id)
-    p @listing
+    @listing = Listing.get(@booked.listing_id)
+    @host = User.get(@listing.user_id)
+    p @host
     @user = User.all
     erb :"bookings/new"
   end
