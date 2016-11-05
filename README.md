@@ -2,8 +2,6 @@
 
 #### Much like the Hotel California, you can checkout - but you can never leave.
 
-![Master of the Whiteboard](image.jpg)
-
 ### User Stories
 
 ```As a host, so potential guests can see my property,

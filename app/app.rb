@@ -3,7 +3,6 @@ ENV["RACK_ENV"] ||= 'development'
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
 require_relative 'models/email'
-require_relative 'models/data_getter'
 
 data_mapper_configure
 
@@ -104,8 +103,6 @@ class HeartbreakBnB < Sinatra::Base
     @user = session[:user_id]
     if @user
       @listings = Listing.all(user_id: @user)
-      getter = Data_getter.new
-      @parcel_arr = getter.return_listings(@listings)
       @requests = @listings.all.bookings
       erb :"users/index"
     else
