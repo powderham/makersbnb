@@ -16,25 +16,18 @@ feature "Account page" do
 
 
 scenario "should be able to see booking requests" do
-sign_in(user1)
-create_listing(listing1)
-sign_out
-
+  sign_in(user1)
+  create_listing(listing1)
+  sign_out
   sign_in(user)
   visit ("/listings")
-  expect(page).to have_content("Swampy")
-  puts page.body
-  within('div#listing_9') do
-    click_button('Request_Booking')
+  within('div#listing_10') do
+    click_button('Request Booking')
   end
   sign_out
-
   sign_in(user1)
   visit("/users")
   expect(page).to have_content("Booked by: Ed Test")
-  click_button("Confirm Booking")
-  expect(page).not_to have_content "Booked by: Ed Test"
-
 end
 
 end
